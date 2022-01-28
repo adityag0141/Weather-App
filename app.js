@@ -8,12 +8,15 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 var temp = "";
 var des = "";
-var icon = "";
 var sym = "";
 var place = "";
 
 app.get("/", function(req, res){
-    res.render("weather", {temperature:temp, description:des, ic:icon, symbol:sym, area:place});
+    temp = "";
+    des = "";
+    sym = "";
+    place = "";
+    res.render("weather", {temperature:temp, description:des, symbol:sym, area:place});
 })
 
 app.post("/", function(req, res){
@@ -31,8 +34,7 @@ app.post("/", function(req, res){
             }
             temp = weatherData.main.temp;
             des = weatherData.weather[0].description ;
-            icon = weatherData.weather[0].icon;
-            res.render("weather", {temperature:temp, description:des, ic:icon, symbol:sym, area:place});
+            res.render("weather", {temperature:temp, description:des, symbol:sym, area:place});
     
     
         })
